@@ -1,0 +1,318 @@
+/* NAVBAR*/
+
+.navt {
+    width: 950px;
+    height: 2cm;
+    display: table;
+    margin-top: 1cm;
+    overflow: hidden;
+    margin-right: 4cm;
+}
+
+.navt li {
+    line-height: 46px;
+    text-align: center;
+    float: right;
+    display: table-cell;
+    padding-left: 0.75cm;
+}
+
+.navt .menu {
+    float: left;
+}
+
+.links {
+    color: lightgrey;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+
+/* SIGN IN SECTION*/
+
+.signinPic {
+    background-image: url("http://csci571.com/hw/hw3/images/lawyer.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 1080px;
+    height: 650px;
+    overflow: hidden;
+    display: block;
+}
+
+.signupBox {
+    background-color: #04345c;
+    height: 10cm;
+    width: 9cm;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    margin: 3cm;
+    margin-left: 2cm;
+    margin-top: 3.5cm;
+}
+
+.signupBox>div {
+    text-align: left;
+    padding: 5px 0;
+    margin: 0.75cm;
+}
+
+
+/*AMAZING FEATURES*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 9cm 9cm 9cm;
+    background-color: white;
+    padding-left: 0.5cm;
+    width: 1080px;
+    height: 10cm;
+    grid-gap: 0.5cm;
+    justify-items: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.grid-container>div {
+    background-color: white;
+    text-align: left;
+    padding: 5px 0;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1cm;
+    color: grey;
+    font-weight: 600;
+}
+
+
+/*FOUNDER WORDS*/
+
+.founder {
+    height: 8cm;
+    width: 1080px;
+    display: table;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.founder>p {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+/* PACKS*/
+
+.packs {
+    background: url("http://csci571.com/hw/hw3/images/glasses.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 120% 120%;
+    background-position: right bottom;
+    width: 1080px;
+    filter: grayscale(90);
+    height: 650px;
+    opacity: 0.3;
+    display: inline-block;
+    overflow-x: hidden;
+    grid-gap: 0.75cm;
+    z-index: -1;
+    position: absolute;
+    overflow: hidden;
+}
+
+.pack-grid {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    margin-left: 3.5cm;
+    margin-top: 4cm;
+    grid-column-gap: 5cm;
+}
+
+
+/*
+.temp3 {
+    background: url("http://csci571.com/hw/hw3/images/grid.png") no-repeat top center;
+    text-align: center;
+    padding: 5px;
+    background-color: white;
+    background-size: 100% 100%;
+    font-size: 10px;
+    width: 7cm;
+    height: 11cm;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    z-index: 1;
+    position: relative;
+    filter: contrast(100%) brightness(120%);
+}
+*/
+
+.block-div {
+    width: 100%;
+    margin-bottom: 8cm;
+}
+
+
+/*TRIAL-----------------------------------------------------------*/
+
+.temp-tint {
+    background-color: white;
+    height: 11cm;
+    width: 7cm;
+    opacity: 1;
+    position: absolute;
+    z-index: -1;
+    display: grid;
+}
+
+.temp-freeTrial {
+    /*background: linear-gradient(to right, #0f3761aa, #0f3761aa), url("images/notebook.jpg") no-repeat top center;*/
+    mix-blend-mode: multiply;
+    background: url("http://csci571.com/hw/hw3/images/grid.png") no-repeat top center;
+    text-align: center;
+    background-color: white;
+    background-size: 100% 100%;
+    font-size: 10px;
+    width: 7cm;
+    height: 11cm;
+    opacity: 0.2;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    z-index: 1;
+    position: relative;
+    /*filter: contrast(100%) brightness(120%);*/
+}
+
+.temp-temp {
+    position: relative;
+    z-index: 1;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+}
+
+.temp-temp1 {
+    text-align: center;
+    color: black;
+    line-height: 1.6;
+}
+
+
+/*----------------------------------------------------------------*/
+
+
+/*TINTED BACKGROUND*/
+
+.tint {
+    background-color: #04345c;
+    min-height: 507px;
+    opacity: 0.85;
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    z-index: -1;
+    filter: brightness(140%);
+}
+
+.freeTrial {
+    /*background: linear-gradient(to right, #0f3761aa, #0f3761aa), url("images/notebook.jpg") no-repeat top center;*/
+    background-image: url("http://csci571.com/hw/hw3/images/notebook.jpg");
+    min-height: 507px;
+    background-repeat: no-repeat;
+    background-size: 100% 130%;
+    width: 100%;
+    height: 80%;
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+    text-align: center;
+    background-position: center bottom;
+    overflow: hidden;
+}
+
+.temp {
+    position: relative;
+    z-index: 1;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+}
+
+.temp1 {
+    text-align: center;
+    color: whitesmoke;
+    line-height: 1.6;
+}
+
+.temp2 {
+    display: block;
+    margin-top: 2cm;
+}
+
+
+/* FOOTER*/
+
+
+/*
+.footer {
+    width: 100%;
+    min-height: 7cm;
+    background-color: yellow;
+    margin-top: 5cm;
+}
+*/
+
+.footer {
+    height: 7cm;
+    width: 100%;
+    display: table;
+    text-align: center;
+    background-color: #232a31;
+    margin-top: 189px;
+}
+
+.footer>p {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: whitesmoke;
+}
+
+
+/*
+.topnav a {
+    float: right;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #2196F3;
+    color: white;
+    float: left;
+}
+
+.topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+*/
