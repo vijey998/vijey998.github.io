@@ -44,7 +44,7 @@
 .signupBox {
     background-color: #04345c;
     height: 10cm;
-    width: 9cm;
+    width: 9.25cm;
     justify-items: center;
     align-items: center;
     display: grid;
@@ -57,6 +57,14 @@
     text-align: left;
     padding: 5px 0;
     margin: 0.75cm;
+}
+
+.sign-up-font {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 34px;
+    color: white;
+    letter-spacing: 0px;
+    line-height: 1;
 }
 
 
