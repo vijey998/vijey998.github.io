@@ -110,8 +110,8 @@
     background: url("http://csci571.com/hw/hw3/images/glasses.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 1600px 900px;
-    background-position: right bottom;
+    background-size: 1500px 825px;
+    background-position: bottom;
     width: 1080px;
     filter: grayscale(90);
     height: 650px;
