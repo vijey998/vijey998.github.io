@@ -1,0 +1,346 @@
+.banner {
+    background: url("./images/banner.jpg");
+    width: 100%;
+    height: 2.75cm;
+    background-position: center right;
+    background-size: 250% 250%;
+}
+
+.street {
+    width: 11.30cm;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.city {
+    width: 5.15cm;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.state {
+    width: 5.15cm;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 13cm;
+    height: 9.5cm;
+    margin: auto;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    box-shadow: 0px 0px 0px grey;
+    -webkit-transition: box-shadow .6s ease-out;
+    box-shadow: .8px .9px 3px grey;
+}
+
+.card:hover {
+    box-shadow: 1px 8px 20px grey;
+    -webkit-transition: box-shadow .3s ease-in;
+}
+
+.card-first {
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+    width: 13cm;
+    height: 8cm;
+    margin: auto;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    box-shadow: 0px 0px 0px grey;
+    -webkit-transition: box-shadow .6s ease-out;
+    box-shadow: .8px .9px 3px grey;
+}
+
+.card-first:hover {
+    box-shadow: 1px 8px 20px grey;
+    -webkit-transition: box-shadow .3s ease-in;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 10px 100px;
+    padding-left: 25px;
+}
+
+.grid-container .temperature {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    font-size: 90px;
+    color: #656565;
+    font-weight: 300;
+}
+
+.grid-container-current-weather {
+    display: grid;
+    grid-template-columns: 250px 10px;
+    padding-left: 20px;
+}
+
+.temperature {
+    margin-left: 4cm;
+}
+
+.card-images {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.current-weather {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    background-image: linear-gradient(white, #4e698c);
+    height: 100%;
+}
+
+.current-weather>div {
+    text-align: left;
+    color: #656565;
+    font-weight: 400;
+}
+
+.current-weather-bottom div {
+    display: flex;
+}
+
+.current-weather-bottom div span {
+    flex: 1;
+}
+
+.current-weather-bottom div span:first-of-type {
+    text-align: right;
+    padding-right: 5px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.current-weather-bottom div span:last-of-type {
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"].submit-button:hover {
+    background-color: #5168ce;
+}
+
+.submit-button {
+    background-color: #324ab2;
+    height: 1cm;
+    width: 2.5cm;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    border: 0px solid;
+    box-shadow: 0px 4px #000072;
+    padding: 1px;
+}
+
+.clear-button {
+    background-color: #f5bd1f;
+    height: 1cm;
+    width: 2.5cm;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    border: 0px solid;
+    box-shadow: 0px 4px #e67e00;
+    padding: 1px;
+}
+
+input[type="reset"].clear-button:hover {
+    background-color: #e3aa0a
+}
+
+
+/*---------------------------------------------------------- Table*/
+
+.two-week-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: 'Lato', sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.two-week-table thead tr {
+    background-color: #324ab2;
+    color: black;
+    text-align: center;
+}
+
+.two-week-table th,
+.two-week-table td {
+    padding: 12px 18px;
+}
+
+.two-week-table tbody tr {
+    padding-top: 10px;
+    border-top: 8px solid #f5f5f5;
+    background-color: white;
+}
+
+
+/*---------------------------------------------------------- Collapsible*/
+
+.collapsible {
+    background-color: #f1f1f1;
+    color: black;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #f1f1f1;
+}
+
+.collapsible:after {
+    content: "";
+    background: url("./images/point-down-512.png");
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background-size: 100%;
+}
+
+.active:after {
+    content: "";
+    background: url("./images/point-up-512.png");
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background-size: 100%;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+
+
+/*----------------------------------------------------------Meteogram */
+
+#container-meteogram {
+    height: 400px;
+    max-width: 800px;
+    min-width: 380px;
+    margin: 0 auto;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#loading {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.highcharts-figure-meteogram,
+.highcharts-data-table table {
+    min-width: 350px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #EBEBEB;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+/*------------------------------------------------------------ Arearange*/
+
+.highcharts-figure-arearange,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+    align-content: center;
+    text-align: center;
+}
+
+#container-arearange {
+    height: 350px;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #EBEBEB;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
