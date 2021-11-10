@@ -1,0 +1,8 @@
+dispatch:
+  # Send all mobile traffic to the mobile frontend.
+  - url: "*/client/*"
+    service: default
+
+  # Send all work to the one static backend.
+  - url: "*/server/*"
+    service: weather-backend

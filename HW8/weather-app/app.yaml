@@ -1,0 +1,15 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+service: default
+handlers:
+- url: /
+  static_files: dist/weather-app/index.html
+  upload: dist/weather-app/index.html
+- url: /
+  static_dir: dist/weather-app
+
+skip_files:
+  - e2e/
+  - node_modules/
+  - coverage

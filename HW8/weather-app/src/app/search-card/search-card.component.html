@@ -1,0 +1,222 @@
+<br />
+<div class="container">
+  <div class="card" style="background-color: #e5e5e5">
+    <div class="card-body">
+      <div class="justify-content-center" style="text-align: center">
+        <h5>Weather Search⛅</h5>
+      </div>
+      <br />
+      <div class="container">
+        <form #weatherForm="ngForm">
+          <!--{{weatherForm.value | json}}-->
+          <div class="form-group row justify-content-center">
+            <label
+              for="street"
+              class="col-sm-2 col-form-label text-responsive"
+              style="font-size: 13px"
+              >Street<span style="color: red">*</span></label
+            >
+            <div class="col-sm-6">
+              <input
+                class="form-control form-control-sm"
+                type="text"
+                id="street"
+                name="street"
+                [disabled]="isDisabled"
+                [required]="isRequired"
+                [(ngModel)]="street"
+                #classStreet="ngModel"
+                [class.is-invalid]="classStreet.invalid && classStreet.touched"
+              />
+              <small
+                class="text-responsive"
+                [class.d-none]="
+                  classStreet.valid || classStreet.untouched || isChecked
+                "
+                style="color: red; font-size: 10px"
+                >Please enter a valid street</small
+              >
+            </div>
+          </div>
+          <div class="form-group row justify-content-center">
+            <label
+              for="city"
+              class="col-sm-2 col-form-label text-responsive"
+              style="font-size: 13px"
+              >City<span style="color: red">*</span></label
+            >
+            <div class="col-sm-6">
+              <input
+                ngx-google-places-autocomplete
+                (onAddressChange)="handleAddressChange($event)"
+                [options]="options"
+                #placesRef="ngx-places"
+                placeholder=""
+                class="form-control form-control-sm"
+                type="text"
+                id="city"
+                name="City"
+                [disabled]="isDisabled"
+                [required]="isRequired"
+                [(ngModel)]="city"
+                #classCity="ngModel"
+                [class.is-invalid]="classCity.invalid && classCity.touched"
+              />
+              <small
+                [class.d-none]="
+                  classCity.valid || classCity.untouched || isChecked
+                "
+                style="color: red; font-size: 10px"
+                >Please enter a valid city</small
+              >
+            </div>
+          </div>
+          <div class="form-group row justify-content-center">
+            <label
+              for="state"
+              class="col-sm-2 col-form-label text-responsive"
+              style="font-size: 13px"
+              >State<span style="color: red">*</span></label
+            >
+            <div class="col-sm-6">
+              <!--
+              <input
+                class="form-control form-control-sm"
+                type="text"
+                id="state"
+                name="state"
+                [disabled]="isDisabled"
+                [required]="isRequired"
+                [(ngModel)]="state"
+                #classState="ngModel"
+                [class.is-invalid]="classState.invalid && classState.touched"
+              />
+              <small
+                [class.d-none]="
+                  (classState.valid || classState.untouched) && !isChecked
+                "
+                style="color: red; font-size: 10px"
+                >Please enter a valid state</small
+              >-->
+              <select
+                type="text"
+                class="form-control form-control-sm"
+                id="state"
+                name="state"
+                [disabled]="isDisabled"
+                [required]="isRequired"
+                [(ngModel)]="state"
+                #classState="ngModel"
+                [class.is-invalid]="classState.invalid && classState.touched"
+              >
+                <option value="" disabled hidden selected>
+                  Select a State
+                </option>
+                <option *ngFor="let s of statesList" [ngValue]="s.name">
+                  {{ s.name }}
+                </option>
+              </select>
+
+              <small
+                [class.d-none]="
+                  classState.valid || classState.untouched || isChecked
+                "
+                style="color: red; font-size: 10px text-responsive"
+                >Please select a state</small
+              >
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <hr
+              class="col-sm-8"
+              style="border-top: 1px solid #8c8b8b text-responsive"
+            />
+          </div>
+          <div class="form-group row justify-content-center">
+            <label
+              class="col-sm-2 col-form-label text-responsive"
+              style="font-size: 13px"
+              >Auto-detect Location<span style="color: red">*</span></label
+            >
+            <div class="col-sm-6">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="curLoc"
+                  [checked]="isChecked"
+                  (click)="disable_inputs(1)"
+                />
+                <label
+                  class="form-check-label text-responsive"
+                  for="curLoc"
+                  style="font-size: 13px"
+                  >Current Location</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-sm-6" style="align-items: left">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                type="submit"
+                value="Search"
+                (click)="geocoding()"
+                [disabled]="
+                  classCity.invalid || classStreet.invalid || classState.invalid
+                "
+              >
+                <i class="bi bi-search"></i>&nbsp;Search
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                class="btn btn-outline-dark btn-sm"
+                type="reset"
+                value="Clear"
+                (click)="disable_inputs(0)"
+              >
+                <i class="bi bi-list-nested"></i>&nbsp;Clear
+              </button>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <br /><br />
+  <div class="row justify-content-center" *ngIf="showProgress">
+  <div class="progress col-sm-8 col-md-8 col-lg-8">
+    <div
+      class="progress-bar progress-bar-striped progress-bar-animated"
+      role="progressbar"
+      [attr.aria-valuenow]="progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      style="width: 75%"
+    ></div>
+  </div>
+  </div>
+</div>
+
+<div class="container">
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <app-results-tab
+      *ngIf="showResults && !error && !showProgress"
+      [weather]="weatherData"
+    ></app-results-tab>
+  </div>
+</div>
+</div>
+<div *ngIf="showResults && error && !showProgress">
+  <br /><br />
+  <div class="alert alert-danger" role="alert">
+    An error occured, please try again later.
+  </div>
+</div>

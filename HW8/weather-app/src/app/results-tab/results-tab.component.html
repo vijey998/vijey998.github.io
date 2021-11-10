@@ -1,0 +1,310 @@
+<div
+  class="row justify-content-center"
+  style="align-items: center; text-align: center"
+>
+  <button
+    type="button"
+    [ngClass]="resClass"
+    [style.color]="resColor"
+    (click)="handleResultOrFav(0)"
+  >
+    Results
+  </button>
+  &nbsp;&nbsp;
+  <button
+    type="button"
+    [ngClass]="favClass"
+    [style.color]="favColor"
+    (click)="handleResultOrFav(1)"
+  >
+    Favourites
+  </button>
+</div>
+<br />
+
+<div *ngIf="resultOrFav === 0">
+  <div [@animImageSlider]="counter">
+    <ng-container>
+      <div *ngIf="counter === 0">
+        <h4 style="text-align: center">
+          Forecast at {{ weather.city }}, {{ weather.state }}
+        </h4>
+        <br />
+        <div style="float: right">
+          <button
+            type="button"
+            class="btn btn-light btn-sm"
+            [style.color]="starColor"
+            (click)="handleFavClick()"
+          >
+            <i [ngClass]="starClass"></i></button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-light btn-sm"
+            (click)="onNext()"
+            [disabled]="idx === -1"
+          >
+            <i class="bi bi-chevron-right"></i>Details
+          </button>
+        </div>
+        <br /><br /><br />
+        <nav
+          ngbNav
+          #nav="ngbNav"
+          class="nav-tabs navbar-right justify-content-end"
+          role="tablist"
+        >
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Day View</a>
+            <ng-template ngbNavContent>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Temp. High (&#xb0;F)</th>
+                      <th scope="col">Temp. Low (&#xb0;F)</th>
+                      <th scope="col">Wind Speed (mph)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="
+                        let json_file of weather.data.timelines[0].intervals;
+                        index as i
+                      "
+                    >
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td (click)="onNext(); idx = i" style="color: blue">
+                        <u> {{ parseDate(json_file.startTime) }}</u>
+                      </td>
+                      <td>
+                        <img
+                          src="{{ image(json_file.values.weatherCode) }}"
+                          style="width: 1.25cm; height: 1.25cm"
+                          alt="{{ image(json_file.values.weatherCode) }}"
+                        />&nbsp;{{ descp(json_file.values.weatherCode) }}
+                      </td>
+                      <td>{{ json_file.values.temperatureMax }}</td>
+                      <td>{{ json_file.values.temperatureMin }}</td>
+                      <td>{{ json_file.values.windSpeed }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink (click)="weather = reInit(1)">Daily Temp. Chart</a>
+            <ng-template ngbNavContent>
+              <app-daily-chart [weather]="weather"></app-daily-chart>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink (click)="weather = reInit(2)">Meteogram</a>
+            <ng-template ngbNavContent>
+              <app-meteogram [weather]="weather"></app-meteogram>
+            </ng-template>
+          </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+      <div
+        *ngIf="counter === 1"
+      >
+        <div>
+          <h4 style="text-align: center">
+            {{ parseDate(weather.data.timelines[0].intervals[idx].startTime) }}
+          </h4>
+          <br /><br />
+          <button
+            type="button"
+            class="btn btn-light btn-sm"
+            (click)="onPrevious()"
+            style="float: left"
+          >
+            List<i class="bi bi-chevron-left"></i>
+          </button>
+          <a
+            href="https://twitter.com/intent/tweet?text=The%20temperature%20in%20{{
+              weather.city
+            }},{{ weather.state }}%20on%20{{
+              parseDate(weather.data.timelines[0].intervals[idx].startTime)
+            }}%20is%20{{
+              weather.data.timelines[0].intervals[idx].values
+                .temperatureApparent
+            }}%20F.%20The%20weather%20conditions%20are%20{{
+              descp(weather.data.timelines[0].intervals[idx].values.weatherCode)
+            }}&hashtags=CSCI571WeatherSearch"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><button
+              type="button"
+              class="btn btn-light btn-sm"
+              style="color: #0275d8; float: right"
+            >
+              <i class="bi bi-twitter"></i></button
+          ></a>
+          <br /><br />
+          <table class="table table-striped" *ngIf="idx >= 0">
+            <tbody>
+              <tr>
+                <th scope="row">Status</th>
+                <td>
+                  {{
+                    descp(
+                      weather.data.timelines[0].intervals[idx].values
+                        .weatherCode
+                    )
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Max Temperature</th>
+                <td>
+                  {{
+                    weather.data.timelines[0].intervals[idx].values
+                      .temperatureMax
+                  }}
+                  &#xb0;F
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Min Temperature</th>
+                <td>
+                  {{
+                    weather.data.timelines[0].intervals[idx].values
+                      .temperatureMin
+                  }}
+                  &#xb0;F
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Apparent Temperature</th>
+                <td>
+                  {{
+                    weather.data.timelines[0].intervals[idx].values
+                      .temperatureApparent
+                  }}
+                  &#xb0;F
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Sun Rise Time</th>
+                <td>
+                  {{
+                    parseTime(
+                      weather.data.timelines[0].intervals[idx].values
+                        .sunriseTime
+                    )
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Sun Set Time</th>
+                <td>
+                  {{
+                    parseTime(
+                      weather.data.timelines[0].intervals[idx].values.sunsetTime
+                    )
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Humidity</th>
+                <td>
+                  {{ weather.data.timelines[0].intervals[idx].values.humidity }}
+                  %
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Wind Speed</th>
+                <td>
+                  {{
+                    weather.data.timelines[0].intervals[idx].values.windSpeed
+                  }}
+                  mph
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Visibility</th>
+                <td>
+                  {{
+                    weather.data.timelines[0].intervals[idx].values.visibility
+                  }}
+                  mi
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Cloud Cover</th>
+                <td>
+                  {{
+                    weather.data.timelines[0].intervals[idx].values.cloudCover
+                  }}
+                  %
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <agm-map
+            [latitude]="str2float(weather.latitude)"
+            [longitude]="str2float(weather.longitude)"
+            [zoom]="14"
+          >
+            <agm-marker
+              [latitude]="str2float(weather.latitude)"
+              [longitude]="str2float(weather.longitude)"
+            ></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div
+  *ngIf="resultOrFav === 1 && getKeys().length > 0"
+  class="row justify-content-center"
+>
+  <ng-container>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cityFav of getKeys(); index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td
+            (click)="
+              setData2Fav(cityFav); resultOrFav = 0; handleResultOrFav(0)
+            "
+            style="color: blue"
+          >
+            <u>{{ cityFav }}</u>
+          </td>
+          <td (click)="
+              setData2Fav(cityFav); resultOrFav = 0; handleResultOrFav(0)
+            " style="color: blue">
+            <u>{{ getState(cityFav) }}</u>
+          </td>
+          <td (click)="remFav(cityFav)"><i class="bi bi-trash-fill"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
+<div
+  *ngIf="resultOrFav === 1 && getKeys().length === 0"
+  class="row justify-content-center"
+>
+  <div class="alert alert-warning col-sm-8" role="alert">Sorry! No records found.</div>
+</div>
